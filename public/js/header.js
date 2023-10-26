@@ -1,0 +1,6 @@
+src="jquery-3.7.1.min.js"
+src="/js/calc.js"
+src="/js/includes.js"
+src="https://unpkg.com/vue@3.0.0"
+src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"
+src="https://cdn.jsdelivr.net/npm/ejs@3.1.9/ejs.min.js"

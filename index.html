@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite App</title>
+    <script src="/js/jquery-3.7.1.min.js"></script>
+    <script src="/js/calc.js"></script>
+    <script src="/js/includes.js"></script>
+    <script src="https://unpkg.com/vue@3.0.0"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.11.6/page.js"></script>
+  </head>
+  <body onload="calculateAndDisplay()">
+    <div id="app">
+
+      <!-- Uso do Router Pages -->
+      <li><a href="./views/cliente/cliente.html/:1">Cliente</a></li>
+
+      <!-- Uso do JQuery -->
+      <div id="includedMenu"></div>
+
+      <h2>Olá mamá</h2>
+
+      <!-- Uso do JQuery -->
+      <div id="result"></div>
+
+      <!-- Uso do VUE -->
+      {{ message }}
+
+
+      <button @click="fetchData">Fetch Data Vue</button>
+      <div v-if="data">
+        <h2>Data from API:</h2>
+        <pre>{{ data }}</pre>
+        <h2>Data2 from API:</h2>
+        <pre>{{ data2 }}</pre>
+      </div>
+    </div>
+
+    <button onclick="fetchDataJQuery()">Fetch Data JQuery</button>    
+      <h2>Data from API:</h2>
+      <pre id="dataFromJquery"></pre>
+      
+      
+  </div>
+
+    <div id="includedFooter"></div>
+  </body>
+
+  <!-- Uso do Vue -->
+  <script>  
+    const app = Vue.createApp({    
+      data() {
+        return {
+          message: "Hello, Vue.js 3!",
+          myVector: [
+            { property1: "Value 1.1", property2: "Value 1.2" },
+            { property1: "Value 2.1", property2: "Value 2.2" },
+            // Add more objects with properties as needed
+          ],
+          data: null,
+          data2: null,
+        };
+      },
+      methods: {
+        async fetchData() {
+          await axios
+            .get("https://jsonplaceholder.typicode.com/posts/1") // Replace with your API endpoint
+            .then((response) => {
+              this.data = response.data;
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+
+          let resp = await axios
+            .get("https://jsonplaceholder.typicode.com/posts/x1")
+            .catch(function (error) {
+              alert("*** Deu Erro: " + error.toString());
+            });
+          this.data2 = resp;
+        },
+      },
+    }).mount("#app");
+  </script>
+
+<!-- Uso Jquery -->
+  <script>
+    function calculateAndDisplay() {
+      // Calculate the value (e.g., sum of two numbers)
+      var sum = soma(1, 4);
+
+      // Display the value in the HTML element
+      $("#result").text("O valor da soma é " + sum);
+    }
+
+    async function fetchDataJQuery() {
+      const resp1 = await axios.get("https://jsonplaceholder.typicode.com/posts/1")
+            .catch((error) => {
+              console.error(error);
+            });
+      $("#dataFromJquery").text(resp1.data.title);
+      console.log("Valor resp:" , resp1.data);
+
+      let resp2 = await axios
+            .get("https://jsonplaceholder.typicode.com/posts/1")
+            .catch(function (error) {
+              alert("*** Deu Erro: " + error.toString());
+            });          
+      }
+      
+  </script>
+
+<script>
+  // page.base("/");
+  page('/chamaGoogle', function(ctx){
+    alert("kkkkk");
+  });
+
+  function chamaGoogle(ctx) {
+    alert("kkkkk");
+    window.open("https://google.com");
+  }
+</script>
+  
+</html>
