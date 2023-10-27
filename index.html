@@ -12,12 +12,20 @@
     <script src="https://unpkg.com/vue@3.0.0"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.24.0/axios.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/page.js/1.11.6/page.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery.session@1.0.0/jquery.session.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/js-cookie@3.0.5/dist/js.cookie.min.js"></script>
   </head>
   <body onload="calculateAndDisplay()">
     <div id="app">
 
-      <!-- Uso do Router Pages -->
-      <li><a href="./views/cliente/cliente.html/:1">Cliente</a></li>
+      <!-- Teste sessionStorage e jquery para guardar dados-->
+      <p id="sessaostorage"></p>
+      <p id="localstorage"></p>
+      <p id="sessaojquery"></p>
+      <p id="cookiejs"></p>
+      
+      <!-- Uso do Router Pages Não deu certo-->
+      <li><a href="./views/cliente/cliente.html">Cliente</a></li>
 
       <!-- Uso do JQuery -->
       <div id="includedMenu"></div>
@@ -49,6 +57,23 @@
 
     <div id="includedFooter"></div>
   </body>
+
+  <script>
+    // uso de sessão na Storage e com Jquery
+    sessionStorage.tiposessao = "Sessão do tipo Session Storage";    
+    $("#sessaostorage").text(sessionStorage.tiposessao);
+    $("#sessaostorage").text(sessionStorage.tiposessao);
+
+    localStorage.tiposessao = "Sessão do tipo Local Storage";    
+    $("#localstorage").text(localStorage.tiposessao);
+
+    $.session.set('tiposessaoJQ','Sessão do tipo JQuery');
+    $("#sessaojquery").text($.session.get("tiposessaoJQ"));
+
+    Cookies.set('tipoCookie', 'Cookie do tipo Javascript')
+    $("#cookiejs").text(Cookies.get("tipoCookie"));
+
+  </script>
 
   <!-- Uso do Vue -->
   <script>  

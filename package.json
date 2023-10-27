@@ -17,9 +17,12 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "vite build"
+    "build": "vite build && cp -rf ./views ./dist"
   },
   "devDependencies": {
     "vite": "^4.4.11"
+  },
+  "dependencies": {
+    "glob": "^10.3.10"
   }
 }
